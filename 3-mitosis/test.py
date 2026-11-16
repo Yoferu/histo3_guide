@@ -51,7 +51,6 @@ def main():
             logging.info(f"Downloading metadata: {f['name']}")
             download_with_curl(f["id"], out_dir / f["name"])
 
-    # 2. الإصلاح الأول: البحث في Collections بدل Articles للوصول إلى الصور الـ 503
     logging.info("Searching Figshare Collections for MIDOG++ images...")
     cols = requests.post(
         "https://api.figshare.com/v2/collections/search",
@@ -79,7 +78,6 @@ def main():
     if args.max_images is not None:
         tiffs = tiffs[: args.max_images]
 
-    # 3. الإصلاح الثاني: التحميل عبر curl لتجاوز حظر 403 Forbidden
     logging.info(f"Downloading {len(tiffs)} .tiff images using curl...")
     for idx, t in enumerate(tiffs, 1):
         logging.info(f"[{idx}/{len(tiffs)}] {t['name']}")
