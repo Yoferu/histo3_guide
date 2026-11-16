@@ -39,7 +39,6 @@ def main():
     out_dir = pathlib.Path(args.location)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # 1. جلب ملفات JSON و SQLite من مقالات البيانات الوصفية
     logging.info("Fetching metadata files (MIDOG++.json, MIDOG++.sqlite)...")
     for article_id in (23531118, 23531121):
         files = requests.get(
